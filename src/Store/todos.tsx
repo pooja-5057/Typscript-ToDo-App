@@ -41,14 +41,12 @@ export const TodosProvideer = ({children}:TodosProviderProps) => {
             },
             ...prev
           ] 
-        //   console.log("my previous " + prev);          
-        //   console.log(newTodos);       
+          console.log("my previous " + prev);          
+          console.log(newTodos);       
            localStorage.setItem("todos",JSON.stringify(newTodos))
           return newTodos
         })
     }
-
-  
     const toggleTodoAsCompleted = (id:string) => {
         setTodos((prev) =>{
             let newTodos = prev.map((todo) => {
@@ -61,8 +59,6 @@ export const TodosProvideer = ({children}:TodosProviderProps) => {
             return newTodos
         })
     }
-
-
     const handleDeleteTodo = (id:string) => {
         setTodos((prev) => {
             let newTodos = prev.filter((filterTodo) => filterTodo.id !== id);
@@ -71,13 +67,11 @@ export const TodosProvideer = ({children}:TodosProviderProps) => {
         })
     }
 
-
     return <todosContext.Provider value={{todos, handleAddToDo, toggleTodoAsCompleted,handleDeleteTodo}}>
         {children}
     </todosContext.Provider>
 }
 
-// consumer 
 export const useTodos = () => {
     const todosConsumer = useContext(todosContext);
     if(!todosConsumer){
